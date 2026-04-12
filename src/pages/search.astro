@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogSearch from "../components/BlogSearch.vue";
+
+const pageTitle = '搜索文章'
+// 获取所有博客文章，返回一个对象
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+
+const searchablePosts = allPosts.map((post:any)=>{
+    let slug='';
+    let url = post.url || '';
+    if (url){
+        slug = url.split('/').pop()?.replace(/\.html$/,'') || '';
+    }else {
+        slug = post.frontmatter.slug ||
+        post.frontmatter.title.toLowerCase().replace(/\s+/g,'-');
+    }
+
+    return {
+        slug:slug,
+        data : {
+            title:post.frontmatter.title,
+            description:post.frontmatter.description || '',
+            tags:post.frontmatter.tags || [],
+        },
+        url: post.url || `/posts/${slug}`,
+    }
+
+})
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <BlogSearch posts={searchablePosts} client:load />
+</BaseLayout>

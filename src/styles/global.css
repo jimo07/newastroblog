@@ -55,6 +55,10 @@ h1 {
   color: #010109;
 }
 
+.search svg {
+  transform: translateY(20%);
+}
+
 .nav-links a:hover,
 .nav-links a:focus {
   background-color: rgb(208, 238, 204,0.4);
@@ -115,17 +119,7 @@ html.dark {
   
 }
 
-/*欢迎按钮 */
-.greeting {
-  background-color: #6e7136;
-  color: #fff;
-  border: none;
-  height: 3rem;
-  width: 8rem;
-  font-size: 1rem;
-  border-radius: 2rem;
-}
-.dark .greeting {
-  color: #6e7136;
-  background-color: rgb(246, 246, 215)
+/* 搜索键 */
+.search-container {
+  text-align: center;
 }
