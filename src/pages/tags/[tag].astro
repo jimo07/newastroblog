@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPost from '../../components/BlogPost.astro';
+
+export async function getStaticPaths() {
+    // const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
+    const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
+    // 将所有tag放到一个数组中 flat()对数组降维,set自动去除重复值
+    const uniqueTages=[...new Set(allPosts.map((post:any)=>post.frontmatter.tags).flat())]
+    
+    return uniqueTages.map((tag)=>{
+        const filteredPosts = allPosts.filter((post:any)=>post.frontmatter.tags.includes(tag))
+        return {
+            params: {tag},
+            props:{posts:filteredPosts},
+        }
+    })
+    // return [
+    //     {params: {tag: "astro"}, props: {posts: allPosts}},
+    //     {params: {tag: "blogging"}, props: {posts: allPosts}},
+    //    {params: {tag: "successes"}, props: {posts: allPosts}}
+    // ];
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+// 过滤你的文章列表，使用 Astro 内置的 TypeScript 支持，筛选出仅包含页面所属标签的文章。
+
+---
+<BaseLayout pageTitle={tag}>
+
+    <p>包含「{tag}」标签的文章</p>
+
+    <ul> 
+        {posts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
+    </ul>
+   
+</BaseLayout>

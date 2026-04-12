@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "关于我";
+const identity = {
+	firstName:"Estrela",
+	country:"universe",
+	occupation:"student",
+	hobbies:["毁灭世界","毁灭自己"]
+}
+const skills=["HTML","CSS","JavaScript"]
+
+const happy = true;
+const finished = true;
+const goal = 3;
+
+// 定义css变量
+const skillColor = "brown";
+const fontWeight = "bold";
+const textCase = "uppercase";
+---
+<BaseLayout pageTitle={pageTitle}>
+
+	<!-- <h1>关于我</h1> -->
+	<ul>
+		<li>我的名字是{identity.firstName}</li>
+		<li>我住在{identity.country},我的职业是{identity.occupation}</li>
+		{identity.hobbies.length>= 2 &&
+			<li>我的两个爱好：{identity.hobbies[0]}和{identity.hobbies[1]}</li>
+		}
+	</ul>
+	<p>技能傍身</p>
+	<ul>
+		{skills.map((skill)=><li class="skill">{skill}</li>)}
+	</ul>
+
+	{happy && <p>我非常乐意学习 Astro!</p>}
+	{finished && <p>我完成了这节教程！</p>}
+	{goal === 3 ? <p>我的目标是在三天内完成。</p> : <p>我的目标不是 3 天。</p>}
+
+    <h2>……和我的新 Astro 网站！</h2>
+
+    <p>我正在学习 Astro 的入门教程。这是我网站上的第二个页面，也是我自己建立的第一页面！</p>
+
+    <p>随着我完成更多教程，该站点将更新，所以请继续查看我的旅程将如何进行吧！</p>
+</BaseLayout>
+<!-- is:global 影响此页面上的每个元素，包括由其他组件创建的元素-->
+<style is:global define:vars={{skillColor,fontWeight,textCase}}>
+    h1 {
+        color: #9dece2;
+        font-size: 4rem;
+    }
+	.skill {
+   		/* color: green; */
+		color: var(--skillColor);
+   		font-weight: var(--fontWeight);
+		text-transform: var(--textCase);
+	}
+</style>
+        

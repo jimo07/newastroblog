@@ -1,0 +1,131 @@
+html {
+  background-color: rgb(246, 246, 215);
+  font-family: cu;
+}
+
+body {
+  cursor: none;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 80ch;
+  padding: 1rem;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(77, 176, 203);
+}
+
+h1 {
+  font-family: cursive;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 2.5rem;
+}
+
+/* 导航菜单样式 */
+.menu {
+  background-color: #3d3f19;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.nav-links {
+  width: 100%;
+  display: none;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-links a {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #010109;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  background-color: rgb(208, 238, 204,0.4);
+  border-radius: 2rem;
+  color: #6a6c52;
+}
+/* has匹配特定子元素的父元素 */
+:has(.menu[aria-expanded="true"]) .nav-links {
+  /* unset不设置,为nav.links的默认值 */
+  display: unset;    
+}
+
+@media screen and (min-width: 636px) {
+  .nav-links {
+    margin-left: 5em;
+    display: block;
+    position: static;
+    width: auto;
+    background: none;
+  }
+
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
+  .menu {
+    display: none;
+  }
+}
+
+/* 黑暗模式 */
+html.dark {
+  background-color: #3d3f19;
+  color: #fff;
+}
+
+.dark .menu {
+  background-color: rgb(246, 246, 215);
+  color: #000;
+}
+
+.dark .nav-links {
+  box-shadow: 0 1rem 0.5rem rgba(0,0,0,0.3);
+}
+
+.dark .nav-links a:hover,
+.dark .nav-links a:focus {
+  color: #09504d;
+}
+
+.dark .nav-links a {
+  color: #fff;
+}
+
+.dark .social{
+  color: #6e7136;
+  background-color: rgb(246, 246, 215);
+  
+}
+
+/*欢迎按钮 */
+.greeting {
+  background-color: #6e7136;
+  color: #fff;
+  border: none;
+  height: 3rem;
+  width: 8rem;
+  font-size: 1rem;
+  border-radius: 2rem;
+}
+.dark .greeting {
+  color: #6e7136;
+  background-color: rgb(246, 246, 215)
+}
