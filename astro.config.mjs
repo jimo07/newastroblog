@@ -6,5 +6,6 @@ import vue from '@astrojs/vue';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jimo07.github.io',
+  base: '/newastroblog/',
   integrations: [vue()]
 });
